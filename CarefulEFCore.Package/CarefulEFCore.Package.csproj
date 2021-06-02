@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>CarefulEFCore</PackageId>
+        <PackageVersion>$(CarefulEFCoreVersion)</PackageVersion>
+        <Authors>RealGoodApps, LLC</Authors>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/RealGoodAppsLLC/CarefulEFCore/main/LICENSE</PackageLicenseUrl>
+        <PackageProjectUrl>https://github.com/RealGoodAppsLLC/CarefulEFCore</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/RealGoodAppsLLC/CarefulEFCore</RepositoryUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>CarefulEFCore</Description>
+        <PackageReleaseNotes>See the following: https://raw.githubusercontent.com/RealGoodAppsLLC/CarefulEFCore/main/CHANGELOG</PackageReleaseNotes>
+        <Copyright>Copyright 2021 RealGoodApps, LLC</Copyright>
+        <PackageTags>EF core, expressions, analyzers</PackageTags>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\CarefulEFCore.Analyzer\CarefulEFCore.Analyzer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+    </ItemGroup>
+
+    <Target Name="_AddAnalyzersToOutput">
+        <ItemGroup>
+            <TfmSpecificPackageFile Include="$(OutputPath)\CarefulEFCore.Analyzer.dll" PackagePath="analyzers/dotnet/cs" />
+        </ItemGroup>
+    </Target>
+
+</Project>

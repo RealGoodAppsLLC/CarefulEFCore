@@ -1,0 +1,5 @@
+<Project>
+    <PropertyGroup>
+        <CarefulEFCoreVersion>0.1.0</CarefulEFCoreVersion>
+    </PropertyGroup>
+</Project>
